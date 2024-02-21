@@ -31,9 +31,7 @@ class DataProcessor:
         pincode_counts = self.df[b]['seller_pincode'].value_counts()
         result_df_seller = pd.DataFrame({'Seller Pincode Error': pincode_counts.index, 'Seller_Pincode Error Count': pincode_counts.values})
         return result_df_seller
-
-    
-   
+        
     def save_to_excel(self, output_path: str, *dataframes):
         combined_df = pd.concat(dataframes, axis=1)  # Concatenate dataframes horizontally
         combined_excel_path = f"{output_path}.xlsx"
@@ -61,7 +59,6 @@ class DataProcessor:
             # Sum of 'Delivery_Pincode Error Count' in the summary sheet
             summary_sheet['J3'] = combined_df['Delivery_Pincode Error Count'].sum()
 
-# Your existing code
 csv_file_path = "data.csv"
 output_path = "Report"
 
@@ -69,7 +66,7 @@ data_processor = DataProcessor(csv_file_path)
 result_df_delivery = data_processor.handle_delivery_pincode()
 result_df_seller = data_processor.handle_seller_pincode()
 
-# Use the updated method to save to a single Excel file with multiple sheets
+#  saved to a single Excel file with multiple sheets
 data_processor.save_to_excel(output_path, result_df_delivery, result_df_seller)
 
 
